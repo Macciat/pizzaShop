@@ -1,3 +1,40 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-menu side="start" menuId="main-menu" contentId="main-content">
+    <ion-header>
+      <ion-toolbar style="--background: #b22222; color: #ffffff;">
+        <ion-title style="font-family: 'Hurricane', cursive; font-size: 2.1rem;">
+          Pizza Shop Shit
+        </ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content style="margin: 4px;">
+      <ion-list>
+        <ion-item routerLink="/home" lines="none" routerDirection="root">
+          <ion-icon name="home-outline" slot="start" style="color: white;"></ion-icon>
+          <span style="font-family: 'Poppins', 'Inter', sans-serif; text-transform: uppercase;">Home</span>
+        </ion-item>
+        <ion-item routerLink="/menu" lines="none" routerDirection="root">
+          <ion-icon name="menu-outline" slot="start" style="color: white;"></ion-icon>
+          <span style="font-family: 'Poppins', 'Inter', sans-serif; text-transform: uppercase;">Menu</span>
+        </ion-item>
+        <ion-item routerLink="/cart" lines="none" routerDirection="root">
+          <ion-icon name="cart-outline" slot="start" style="color: white;"></ion-icon>
+          <span style="font-family: 'Poppins', 'Inter', sans-serif; text-transform: uppercase;">Cart</span>
+        </ion-item>
+        <ion-item routerLink="/about" lines="none" routerDirection="root">
+          <ion-icon name="information-circle-outline" slot="start" style="color: white;"></ion-icon>
+          <span style="font-family: 'Poppins', 'Inter', sans-serif; text-transform: uppercase;">About</span>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+
+  <div id="main-content" class="main-layout">
+    <app-navbar></app-navbar>
+
+    <ion-content fullscreen>
+      <ion-router-outlet></ion-router-outlet>
+    </ion-content>
+  </div>
 </ion-app>

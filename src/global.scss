@@ -1,37 +1,178 @@
-/*
- * App Global CSS
- * ----------------------------------------------------------------------------
- * Put style rules here that you want to apply globally. These styles are for
- * the entire app and not just one component. Additionally, this file can be
- * used as an entry point to import other CSS/Sass files to be included in the
- * output CSS.
- * For more information on global stylesheets, visit the documentation:
- * https://ionicframework.com/docs/layout/global-stylesheets
- */
-
-/* Core CSS required for Ionic components to work properly */
 @import "@ionic/angular/css/core.css";
-
-/* Basic CSS for apps built with Ionic */
 @import "@ionic/angular/css/normalize.css";
 @import "@ionic/angular/css/structure.css";
 @import "@ionic/angular/css/typography.css";
 @import "@ionic/angular/css/display.css";
-
-/* Optional CSS utils that can be commented out */
 @import "@ionic/angular/css/padding.css";
 @import "@ionic/angular/css/float-elements.css";
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
+@import 'swiper/swiper-bundle.css';
 
-/**
- * Ionic Dark Mode
- * -----------------------------------------------------
- * For more info, please see:
- * https://ionicframework.com/docs/theming/dark-mode
- */
+:root {
+  --ion-color-primary: #e63946;
+  --ion-color-secondary: #2a9d8f;
+  --ion-color-tertiary: #ffffff;
+  --ion-color-light: #fff8f0;
+  --ion-color-dark: #1a1a1a;
+  --ion-background-color: #fff8f0;
+  --ion-text-color: #2a9d8f;
+  --ion-toolbar-background: #e63946;
+  --ion-toolbar-color: #ffffff;
+  --ion-color-success: #2a9d8f;
+  --ion-color-warning: #e9c46a;
+  --ion-color-danger: #e63946;
+}
 
-/* @import "@ionic/angular/css/palettes/dark.always.css"; */
-/* @import "@ionic/angular/css/palettes/dark.class.css"; */
-@import '@ionic/angular/css/palettes/dark.system.css';
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: var(--ion-background-color);
+  color: var(--ion-text-color);
+  margin: 0;
+  padding: 0;
+}
+
+ion-toolbar {
+  --background: var(--ion-toolbar-background);
+  --color: var(--ion-toolbar-color);
+  border-bottom: 3px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+ion-button {
+  --background: var(--ion-color-secondary);
+  --color: #ffffff;
+  border-radius: 10px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+ion-button:hover {
+  --background: #ffffff;
+  --color: var(--ion-color-secondary);
+  transform: scale(1.05);
+}
+
+.nav-link {
+  color: #2a9d8f;
+  font-weight: 600;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.3s ease;
+}
+
+.nav-link ion-icon {
+  color: #2a9d8f;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #ffffff;
+}
+
+.nav-link:hover ion-icon {
+  color: #ffffff;
+}
+
+ion-item,
+ion-button,
+ion-icon,
+.nav-link,
+.cart-button {
+  --ion-item-background: transparent;
+  background: transparent !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+ion-button,
+ion-buttons ion-button,
+ion-toolbar ion-button {
+  --background: transparent !important;
+  --background-activated: transparent !important;
+  --background-focused: transparent !important;
+  --background-hover: transparent !important;
+  --border-width: 0 !important;
+  --border-color: transparent !important;
+  --box-shadow: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  outline: none !important;
+  --ripple-color: transparent !important;
+}
+
+ion-button:focus,
+ion-button:active {
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--ion-color-secondary);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--ion-color-primary);
+}
+ion-menu {
+  --background: #b22222 !important; 
+  color: #ffffff !important;
+  font-family: "Poppins", sans-serif;
+  border-right: 2px solid rgba(255, 255, 255, 0.15);
+}
+
+ion-menu-button {
+  color: #ffffff !important;
+  --color: #ffffff !important;
+  font-size: 1.8rem;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  transition: all 0.3s ease;
+}
+
+ion-menu-button:hover {
+  color: #2a9d8f !important;
+  --color: #2a9d8f !important;
+  transform: scale(1.1);
+}
+
+ion-header,
+ion-toolbar {
+  --background: #b22222 !important;
+  --color: #ffffff !important;
+}
+
+ion-content {
+  --background: #b22222 !important;
+  color: #ffffff !important;
+}
+
+ion-list {
+  background: transparent !important;
+}
+
+ion-item {
+  --background: transparent !important;
+  --color: #ffffff !important;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 8px;
+  margin: 4px 12px;
+  transition: all 0.3s ease;
+}
+
+ion-item:hover {
+  background: rgba(42, 157, 143, 0.25) !important;
+  --color: #ffffff !important;
+  transform: scale(1.05);
+}
