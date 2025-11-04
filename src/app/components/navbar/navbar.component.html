@@ -6,20 +6,46 @@
   <ion-title class="logo">Pizza Shop Title Shit</ion-title>
 
   <div class="nav-actions" slot="end">
-    <ion-button fill="clear" class="nav-link" routerLink="/home" routerLinkActive="active">
+    <ion-button fill="clear" class="nav-link" routerLink="/home">
       <ion-icon name="home-outline"></ion-icon>
       Home
     </ion-button>
-    <ion-button fill="clear" class="nav-link" routerLink="/menu" routerLinkActive="active">
+
+    <ion-button fill="clear" class="nav-link" routerLink="/menu">
       <ion-icon name="restaurant-outline"></ion-icon>
       Menu
     </ion-button>
-    <ion-button fill="clear" class="nav-link" routerLink="/about" routerLinkActive="active">
-      <ion-icon name="information-circle-outline"></ion-icon>
-      About Us
-    </ion-button>
-    <ion-button fill="clear" class="nav-link" routerLink="/cart" routerLinkActive="active">
+
+    <ion-button fill="clear" class="nav-link" routerLink="/cart">
       <ion-icon name="cart-outline"></ion-icon>
+      Cart
     </ion-button>
+
+    <ion-button fill="clear" class="nav-link" routerLink="/about">
+      <ion-icon name="information-circle-outline"></ion-icon>
+      About
+    </ion-button>
+
+    <ion-button fill="clear" class="nav-link" routerLink="/company-history">
+      <ion-icon name="business-outline"></ion-icon>
+      Company
+    </ion-button>
+
+    <ion-button fill="clear" class="nav-link" routerLink="/developers">
+      <ion-icon name="people-outline"></ion-icon>
+      Developers
+    </ion-button>
+
+    <ion-button fill="clear" class="nav-link" routerLink="/contact-us">
+      <ion-icon name="call-outline"></ion-icon>
+      Contact
+    </ion-button>
+
+    <!-- ✅ This button always exists -->
+<ion-button fill="clear" color="light" class="nav-link login-btn" (click)="onAuthClick()">
+  <ion-icon [name]="isLoggedIn ? 'log-out-outline' : 'log-in-outline'"></ion-icon>
+  <span>{{ isLoggedIn ? 'Logout' : 'Login' }}</span>
+</ion-button>
+
   </div>
 </ion-toolbar>

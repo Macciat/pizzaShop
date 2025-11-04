@@ -26,4 +26,24 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./pages/about/about.page').then((m) => m.AboutPage),
   },
+  {
+    path: 'company-history',
+    loadComponent: () => import('./pages/company-history/company-history.page').then( m => m.CompanyHistoryPage)
+  },
+  {
+    path: 'developers',
+    loadComponent: () => import('./pages/developers/developers.page').then( m => m.DevelopersPage)
+  },
+  {
+    path: 'contact-us',
+    loadComponent: () => import('./pages/contact-us/contact-us.page').then( m => m.ContactUsPage)
+  },
+  {
+    path: 'login',
+    loadComponent: () => import('./login/login.page').then( m => m.LoginPage)
+  },
+  {
+    path: 'register',
+    loadComponent: () => import('./register/register.page').then( m => m.RegisterPage)
+  },
 ];

@@ -1,17 +1,75 @@
 <ion-content fullscreen>
-  <div style="background: yellow; padding: 10px; text-align: center;">
-    <strong>Top Section</strong>
-  </div>
-
-  <div class="carousel-wrapper">
-    <swiper-container pagination="true" navigation="true" style="width: 100%; height: 200px; display: block; background: lightgray;">
-      <swiper-slide *ngFor="let slide of slides">
+  <!-- 🔹 Carousel -->
+  <section class="carousel-section">
+    <swiper-container
+      pagination="true"
+      autoplay-delay="10000"
+      autoplay-disable-on-interaction="false"
+      loop="true"
+    >
+      <swiper-slide *ngFor="let slide of slides" (click)="onSlideClick(slide)">
         <img [src]="slide.image" alt="Slide Image" class="slide-img" />
       </swiper-slide>
     </swiper-container>
-  </div>
+  </section>
 
-  <div style="background: red; width: 100%; height: 200px;">
-    TEST BOX
-  </div>
+    <section class="video-section">
+    <h2 class="video-title">Abunjingbunjing</h2>
+    <p class="video-description">
+      Wala pa text ichachatgpt ko nalang ilalagay
+    </p>
+    <div class="video-wrapper">
+      <iframe
+        width="100%"
+        height="100%"
+        src="https://www.youtube.com/embed/T3AHBe0I0yc?mute=1&controls=0&rel=0"
+        title="Promotional Video"
+        allow="autoplay; encrypted-media"
+        allowfullscreen
+      ></iframe>
+    </div>
+  </section>
+  
+  <section id="featured-section" class="menu-section">
+    <h1 class="section-title">Featured Products</h1>
+    <div class="menu-grid">
+      <div class="menu-card" *ngFor="let item of featuredProducts" (click)="navigateTo('/menu')">
+        <img [src]="item.image" alt="{{ item.name }}" />
+        <h3>{{ item.name }}</h3>
+        <p>₱{{ item.price }}</p>
+      </div>
+    </div>
+
+    <div class="view-more-btn">
+      <ion-button expand="block" color="danger" (click)="navigateTo('/menu')">
+        View Full Menu
+      </ion-button>
+    </div>
+  </section>
+
+  <section class="quick-menu">
+    <h2>Our Best Sellers & Promos</h2>
+    <div class="promo-grid">
+      <div
+        class="promo-card"
+        *ngFor="let item of quickMenu"
+        (click)="navigateTo(item.link)"
+      >
+        <img [src]="item.image" alt="{{ item.title }}" />
+        <div class="promo-info">
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.tagline }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <section class="description-section">
+    <h1 class="title">Paalam na aking mahal</h1>
+    <p class="description">
+      Ito din ichachatgpt ko nalang wala pa kong maisip na ilalagay dito eh
+    </p>
+  </section>
 </ion-content>

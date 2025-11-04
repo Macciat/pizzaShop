@@ -3,8 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  supabaseUrl: 'https://yuzsjohfqpsryuzmnbpk.supabase.co',
+  supabaseAnonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inl1enNqb2hmcXBzcnl1em1uYnBrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjExNTA4MjUsImV4cCI6MjA3NjcyNjgyNX0.SWXyo36e0obZKeUNGCO8AUb_s5pDvF7GE39abKdr4aI',
 };
+
 
 /*
  * For easier debugging in development mode, you can import the following file

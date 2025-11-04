@@ -120,3 +120,35 @@ ion-title.logo {
 .cart-button {
   cursor: pointer;
 }
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  ion-button.nav-link {
+    font-family: inherit;
+    font-size: 16px; 
+    font-weight: 500;
+    text-transform: none;
+    letter-spacing: 0.3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+
+    ion-icon {
+      font-size: 18px;
+      margin-bottom: 1px; 
+    }
+
+    span {
+      font-size: 16px;
+      line-height: 1;
+    }
+
+    &.login-btn {
+      transition: all 0.2s ease-in-out;
+    }
+  }
+}
+

@@ -1,0 +1,45 @@
+<ion-content class="register-content" fullscreen>
+  <div class="form-container" style="padding-top: 100px;">
+    <ion-card class="register-card">
+      <ion-card-header>
+        <ion-card-title class="title">Register</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <form (ngSubmit)="register()">
+          <ion-item>
+            <ion-label position="stacked">Full Name</ion-label>
+            <ion-input [(ngModel)]="full_name" name="full_name" required></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Email</ion-label>
+            <ion-input [(ngModel)]="email" name="email" type="email" required></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Password</ion-label>
+            <ion-input [(ngModel)]="password" name="password" type="password" required></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Address</ion-label>
+            <ion-input [(ngModel)]="address" name="address"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Phone Number</ion-label>
+            <ion-input [(ngModel)]="phone_number" name="phone_number" type="tel" placeholder="e.g. 09171234567"></ion-input>
+          </ion-item>
+
+          <div class="text-button" (click)="register()">Register</div>
+
+          <p class="login-link">
+            Already have an account?
+            <a (click)="goToLogin()">Login here</a>
+          </p>
+        </form>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
