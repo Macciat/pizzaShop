@@ -3,7 +3,7 @@
     <ion-menu-button autoHide="false" color="light"></ion-menu-button>
   </ion-buttons>
 
-  <ion-title class="logo">Pizza Shop Title Shit</ion-title>
+  <ion-title class="logo">Primo Pizza</ion-title>
 
   <div class="nav-actions" slot="end">
     <ion-button fill="clear" class="nav-link" routerLink="/home">
@@ -41,7 +41,6 @@
       Contact
     </ion-button>
 
-    <!-- ✅ This button always exists -->
 <ion-button fill="clear" color="light" class="nav-link login-btn" (click)="onAuthClick()">
   <ion-icon [name]="isLoggedIn ? 'log-out-outline' : 'log-in-outline'"></ion-icon>
   <span>{{ isLoggedIn ? 'Logout' : 'Login' }}</span>
