@@ -43,19 +43,20 @@ export class MenuPage {
   async loadPromos() {
     const { data, error } = await this.supabase.client.from('promos').select('*');
     if (error) return;
+
     this.bestSellers = data.filter(p => p.promo_type === 'Best Sellers');
     this.familyFeast = data.filter(p => p.promo_type === 'Family Feast');
     this.weekendPromo = data.filter(p => p.promo_type === 'Weekend Promo');
+    this.sides = data.filter(p => p.promo_type === 'Sides');
+    this.pasta = data.filter(p => p.promo_type === 'Pasta');
+    this.drinks = data.filter(p => p.promo_type === 'Drinks');
+    this.desserts = data.filter(p => p.promo_type === 'Desserts');
   }
 
   async loadMenuItems() {
     const { data, error } = await this.supabase.client.from('menu_items').select('*');
     if (error) return;
     this.pizzas = data.filter(i => i.category === 'Pizzas');
-    this.pasta = data.filter(i => i.category === 'Pasta');
-    this.drinks = data.filter(i => i.category === 'Drinks');
-    this.desserts = data.filter(i => i.category === 'Desserts');
-    this.sides = data.filter(i => i.category === 'Sides');
   }
 
   setPromoTab(tab: string) {
@@ -84,7 +85,7 @@ export class MenuPage {
   }
 
   async addToCartFromCard(item: any, event: Event) {
-    event.stopPropagation(); // prevent modal from opening
+    event.stopPropagation();
     await this.addItemToCart(item, 1);
   }
 
