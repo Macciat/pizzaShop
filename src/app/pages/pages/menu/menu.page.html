@@ -1,0 +1,163 @@
+<ion-header translucent="true">
+  <ion-toolbar color="dark">
+    <ion-title>Menu</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <div class="menu-wrapper">
+    <section id="promos-section" class="menu-section">
+      <h1 class="section-title">Our Best Deals & Promos</h1>
+
+      <div class="tab-bar">
+        <button
+          *ngFor="let tab of promoTabs"
+          (click)="activePromoTab = tab"
+          [ngClass]="{ active: activePromoTab === tab }"
+        >
+          {{ tab }}
+        </button>
+      </div>
+
+      <div class="tab-content">
+        <div *ngIf="activePromoTab === 'Best Sellers'" class="menu-grid">
+          <div
+            class="menu-card"
+            *ngFor="let item of bestSellers"
+            (click)="openModal(item)"
+          >
+            <img [src]="item.image_url" alt="{{ item.name }}" />
+            <h3>{{ item.name }}</h3>
+            <p>₱{{ item.price }}</p>
+          </div>
+        </div>
+
+        <div *ngIf="activePromoTab === 'Family Feast'" class="menu-grid">
+          <div
+            class="menu-card"
+            *ngFor="let item of familyFeast"
+            (click)="openModal(item)"
+          >
+            <img [src]="item.image_url" alt="{{ item.name }}" />
+            <h3>{{ item.name }}</h3>
+            <p>₱{{ item.price }}</p>
+          </div>
+        </div>
+
+        <div *ngIf="activePromoTab === 'Weekend Promo'" class="menu-grid">
+          <div
+            class="menu-card"
+            *ngFor="let item of weekendPromo"
+            (click)="openModal(item)"
+          >
+            <img [src]="item.image_url" alt="{{ item.name }}" />
+            <h3>{{ item.name }}</h3>
+            <p>₱{{ item.price }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="menu-section" class="menu-section">
+      <h1 class="section-title">Regular Menu</h1>
+
+      <div class="tab-bar">
+        <button
+          *ngFor="let tab of menuTabs"
+          (click)="activeMenuTab = tab"
+          [ngClass]="{ active: activeMenuTab === tab }"
+        >
+          {{ tab }}
+        </button>
+      </div>
+
+      <div class="tab-content">
+        <div *ngIf="activeMenuTab === 'Pizzas'" class="menu-grid">
+          <div
+            class="menu-card"
+            *ngFor="let item of pizzas"
+            (click)="openModal(item)"
+          >
+            <img [src]="item.image_url" alt="{{ item.name }}" />
+            <h3>{{ item.name }}</h3>
+            <p>₱{{ item.price }}</p>
+          </div>
+        </div>
+
+        <div *ngIf="activeMenuTab === 'Pasta'" class="menu-grid">
+          <div
+            class="menu-card"
+            *ngFor="let item of pasta"
+            (click)="openModal(item)"
+          >
+            <img [src]="item.image_url" alt="{{ item.name }}" />
+            <h3>{{ item.name }}</h3>
+            <p>₱{{ item.price }}</p>
+          </div>
+        </div>
+
+        <div *ngIf="activeMenuTab === 'Drinks'" class="menu-grid">
+          <div
+            class="menu-card"
+            *ngFor="let item of drinks"
+            (click)="openModal(item)"
+          >
+            <img [src]="item.image_url" alt="{{ item.name }}" />
+            <h3>{{ item.name }}</h3>
+            <p>₱{{ item.price }}</p>
+          </div>
+        </div>
+
+        <div *ngIf="activeMenuTab === 'Desserts'" class="menu-grid">
+          <div
+            class="menu-card"
+            *ngFor="let item of desserts"
+            (click)="openModal(item)"
+          >
+            <img [src]="item.image_url" alt="{{ item.name }}" />
+            <h3>{{ item.name }}</h3>
+            <p>₱{{ item.price }}</p>
+          </div>
+        </div>
+
+        <div *ngIf="activeMenuTab === 'Sides'" class="menu-grid">
+          <div
+            class="menu-card"
+            *ngFor="let item of sides"
+            (click)="openModal(item)"
+          >
+            <img [src]="item.image_url" alt="{{ item.name }}" />
+            <h3>{{ item.name }}</h3>
+            <p>₱{{ item.price }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <ion-modal [isOpen]="isModalOpen" (didDismiss)="closeModal()">
+    <ng-template>
+      <ion-header translucent="true">
+        <ion-toolbar color="dark">
+          <ion-title>{{ selectedItem?.name }}</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="closeModal()">Close</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+
+      <ion-content class="ion-padding">
+        <div class="modal-content">
+          <img [src]="selectedItem?.image_url" alt="{{ selectedItem?.name }}" />
+          <h2>{{ selectedItem?.name }}</h2>
+          <p>{{ selectedItem?.description }}</p>
+          <h3>₱{{ selectedItem?.price }}</h3>
+
+          <ion-button expand="block" color="danger" (click)="addToCart()">
+            Add to Cart
+          </ion-button>
+        </div>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+</ion-content>

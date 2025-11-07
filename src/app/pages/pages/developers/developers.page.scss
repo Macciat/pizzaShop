@@ -1,0 +1,175 @@
+:host {
+  --bg: #3a0d0d;
+  --panel: #6d1a1a;
+  --accent: #d4af37;
+  --accent-dark: #b28a2a;
+  --muted: #f2d8d8;
+  --text: #fff5f5;
+
+  display: block;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Montserrat', sans-serif;
+  min-height: 100vh;
+  padding: 5rem 1.5rem 1.5rem;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+:host .header {
+  text-align: center;
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+:host .header h1 {
+  font-family: 'Merriweather', serif;
+  color: var(--accent);
+  font-size: 2rem;
+  margin: 0;
+}
+
+:host .team-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+:host .developer-card {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  background: linear-gradient(180deg, var(--panel) 0%, var(--bg) 100%);
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.28);
+  padding: 1rem;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  border: 1px solid rgba(255,255,255,0.04);
+}
+
+:host .developer-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 30px rgba(212,175,55,0.22);
+}
+
+:host .dev-image {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+:host .image-frame {
+  display: inline-block;
+  padding: 6px;
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  background: radial-gradient(circle at top left, var(--accent) 0%, var(--accent-dark) 100%);
+  box-shadow: 0 0 12px rgba(212, 175, 55, 0.45);
+}
+
+:host .image-frame img {
+  display: block;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  border: 2px solid var(--bg);
+  object-fit: cover;
+  box-sizing: border-box;
+  background: var(--bg);
+}
+
+:host .dev-info {
+  flex: 1;
+}
+
+:host .dev-info h2 {
+  font-family: 'Merriweather', serif;
+  color: var(--accent);
+  font-size: 1.25rem;
+  margin: 0 0 0.25rem 0;
+}
+
+:host .dev-info h3 {
+  font-family: 'Merriweather', serif;
+  color: var(--accent);
+  font-size: 1.10rem;
+  margin: 0 0 0.25rem 0;
+}
+
+:host .dev-info h4 {
+  color: #f5e1a4;
+  font-size: 1.20rem;
+  margin: 0 0 0.6rem 0;
+  font-weight: 600;
+}
+
+:host .dev-info p {
+  margin: 0;
+  color: #f0dada;
+  font-size: 0.98rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 760px) {
+  :host .developer-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  :host .dev-image {
+    margin-bottom: 0.75rem;
+  }
+
+  :host .image-frame img {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+@media (max-width: 420px) {
+  :host {
+    padding: 4.2rem 1rem 1rem;
+  }
+
+  :host .developer-card {
+    padding: 0.85rem;
+  }
+
+  :host .image-frame img {
+    width: 100px;
+    height: 100px;
+  }
+
+  :host .dev-info h2 {
+    font-size: 1.05rem;
+  }
+
+  :host .dev-info p {
+    font-size: 0.95rem;
+  }
+}
+
+:host {
+  scrollbar-width: thin;
+  scrollbar-color: #a37f2d #2a0909;
+}
+
+:host::-webkit-scrollbar {
+  width: 10px;
+}
+
+:host::-webkit-scrollbar-track {
+  background: #2a0909;
+}
+
+:host::-webkit-scrollbar-thumb {
+  background-color: #a37f2d;
+  border-radius: 6px;
+  border: 2px solid #2a0909;
+}
+
+:host::-webkit-scrollbar-thumb:hover {
+  background-color: var(--accent);
+}
