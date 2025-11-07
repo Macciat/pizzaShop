@@ -1,0 +1,160 @@
+:host {
+  --bg: #3a0d0d;
+  --panel: #6d1a1a;
+  --accent: #d4af37;
+  --accent-dark: #b28a2a;
+  --text: #fff5f5;
+
+  display: block;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Montserrat', sans-serif;
+  min-height: 100vh;
+  padding: 5rem 1.5rem 2rem;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+/* HEADER */
+.header {
+  text-align: center;
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 0.75rem;
+  margin-bottom: 2rem;
+
+  h1 {
+    font-family: 'Merriweather', serif;
+    color: var(--accent);
+    font-size: 2rem;
+    margin: 0;
+  }
+}
+
+/* FORM SECTION */
+.contact-section {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+
+  p {
+    color: #f0dada;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  form {
+    background: linear-gradient(180deg, var(--panel) 0%, var(--bg) 100%);
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(212,175,55,0.25);
+    padding: 1.5rem;
+    text-align: left;
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 1rem;
+
+      label {
+        color: var(--accent);
+        font-family: 'Merriweather', serif;
+        margin-bottom: 0.4rem;
+      }
+
+      input,
+      textarea {
+        background: #2a0909;
+        border: 1px solid #5c1a1a;
+        border-radius: 8px;
+        padding: 0.7rem;
+        color: var(--text);
+        font-size: 1rem;
+        font-family: 'Montserrat', sans-serif;
+        transition: border 0.2s ease;
+      }
+
+      input:focus,
+      textarea:focus {
+        outline: none;
+        border-color: var(--accent);
+      }
+    }
+
+    .contact-btn {
+      width: 100%;
+      background: var(--accent);
+      color: #3a0d0d;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      padding: 0.8rem 1rem;
+      cursor: pointer;
+      font-family: 'Montserrat', sans-serif;
+      transition: all 0.2s ease;
+      box-shadow: 0 0 6px rgba(212,175,55,0.25);
+
+      &:hover {
+        background: var(--accent-dark);
+        box-shadow: 0 0 12px rgba(212,175,55,0.4);
+      }
+    }
+  }
+}
+
+/* CUSTOM SCROLLBAR */
+:host {
+  scrollbar-width: thin;
+  scrollbar-color: #a37f2d #2a0909;
+}
+
+:host::-webkit-scrollbar {
+  width: 10px;
+}
+
+:host::-webkit-scrollbar-track {
+  background: #2a0909;
+}
+
+:host::-webkit-scrollbar-thumb {
+  background-color: #a37f2d;
+  border-radius: 6px;
+  border: 2px solid #2a0909;
+}
+
+:host::-webkit-scrollbar-thumb:hover {
+  background-color: var(--accent);
+}
+
+:host .form-group select {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  font-size: 1rem;
+  color: #f8e9c0;
+  background-color: #4b1515;
+  border: 1.5px solid var(--accent);
+  border-radius: 6px;
+  font-family: 'Montserrat', sans-serif;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+  appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='%23d4af37' height='16' viewBox='0 0 24 24' width='16' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1rem;
+}
+
+:host .form-group select:hover {
+  background-color: #5c1818;
+  border-color: #e0bf57;
+}
+
+:host .form-group select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.4);
+}
+
+:host .form-group option {
+  background-color: #3a0d0d;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+}
