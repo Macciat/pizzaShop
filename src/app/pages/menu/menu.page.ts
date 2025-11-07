@@ -77,16 +77,18 @@ export class MenuPage {
     this.selectedItem = null;
   }
 
-  increaseQty() {
-    this.quantity++;
-  }
-
-  decreaseQty() {
-    if (this.quantity > 1) this.quantity--;
-  }
-
   async addToCart() {
     if (!this.selectedItem) return;
+    await this.addItemToCart(this.selectedItem, this.quantity);
+    this.closeModal();
+  }
+
+  async addToCartFromCard(item: any, event: Event) {
+    event.stopPropagation(); // prevent modal from opening
+    await this.addItemToCart(item, 1);
+  }
+
+  private async addItemToCart(item: any, qty: number) {
     const { data: sessionData, error: sessionError } = await this.supabase.client.auth.getSession();
     if (sessionError) return;
     const userId = sessionData?.session?.user?.id;
@@ -99,9 +101,11 @@ export class MenuPage {
       await alert.present();
       return;
     }
-    const isPromo = !!this.selectedItem.promo_type;
+
+    const isPromo = !!item.promo_type;
     const idField = isPromo ? 'promo_id' : 'menu_item_id';
-    const idValue = this.selectedItem.id;
+    const idValue = item.id;
+
     const { data: existingItem } = await this.supabase.client
       .from('cart')
       .select('id, quantity')
@@ -112,23 +116,22 @@ export class MenuPage {
     if (existingItem) {
       await this.supabase.client
         .from('cart')
-        .update({ quantity: existingItem.quantity + this.quantity })
+        .update({ quantity: existingItem.quantity + qty })
         .eq('id', existingItem.id);
     } else {
       await this.supabase.client.from('cart').insert({
         user_id: userId,
         menu_item_id: isPromo ? null : idValue,
         promo_id: isPromo ? idValue : null,
-        quantity: this.quantity,
+        quantity: qty,
       });
     }
 
     const alert = await this.alertCtrl.create({
       header: 'Added to Cart',
-      message: `${this.selectedItem.name} added to your cart.`,
+      message: `${item.name} added to your cart.`,
       buttons: ['OK'],
     });
     await alert.present();
-    this.closeModal();
   }
 }

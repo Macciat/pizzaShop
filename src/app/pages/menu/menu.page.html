@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content fullscreen>
-  <div class="menu-wrapper">
+  <div class="menu-wrapper" style="padding-top: 80px;">
     <section id="promos-section" class="menu-section">
       <h1 class="section-title">Our Best Deals & Promos</h1>
 
@@ -29,6 +29,10 @@
             <img [src]="item.image_url" alt="{{ item.name }}" />
             <h3>{{ item.name }}</h3>
             <p>₱{{ item.price }}</p>
+            <ion-button fill="clear" color="Dark" (click)="addToCartFromCard(item, $event)">
+              <ion-icon name="cart-outline" slot="start"></ion-icon>
+              Add to Cart
+            </ion-button>
           </div>
         </div>
 
@@ -41,6 +45,10 @@
             <img [src]="item.image_url" alt="{{ item.name }}" />
             <h3>{{ item.name }}</h3>
             <p>₱{{ item.price }}</p>
+            <ion-button fill="clear" color="Dark" (click)="addToCartFromCard(item, $event)">
+              <ion-icon name="cart-outline" slot="start"></ion-icon>
+              Add to Cart
+            </ion-button>
           </div>
         </div>
 
@@ -53,6 +61,10 @@
             <img [src]="item.image_url" alt="{{ item.name }}" />
             <h3>{{ item.name }}</h3>
             <p>₱{{ item.price }}</p>
+            <ion-button fill="clear" color="Dark" (click)="addToCartFromCard(item, $event)">
+              <ion-icon name="cart-outline" slot="start"></ion-icon>
+              Add to Cart
+            </ion-button>
           </div>
         </div>
       </div>
@@ -81,6 +93,10 @@
             <img [src]="item.image_url" alt="{{ item.name }}" />
             <h3>{{ item.name }}</h3>
             <p>₱{{ item.price }}</p>
+            <ion-button fill="clear" color="Dark" (click)="addToCartFromCard(item, $event)">
+              <ion-icon name="cart-outline" slot="start"></ion-icon>
+              Add to Cart
+            </ion-button>
           </div>
         </div>
 
@@ -93,6 +109,10 @@
             <img [src]="item.image_url" alt="{{ item.name }}" />
             <h3>{{ item.name }}</h3>
             <p>₱{{ item.price }}</p>
+            <ion-button fill="clear" color="Dark" (click)="addToCartFromCard(item, $event)">
+              <ion-icon name="cart-outline" slot="start"></ion-icon>
+              Add to Cart
+            </ion-button>
           </div>
         </div>
 
@@ -105,6 +125,10 @@
             <img [src]="item.image_url" alt="{{ item.name }}" />
             <h3>{{ item.name }}</h3>
             <p>₱{{ item.price }}</p>
+            <ion-button fill="clear" color="Dark" (click)="addToCartFromCard(item, $event)">
+              <ion-icon name="cart-outline" slot="start"></ion-icon>
+              Add to Cart
+            </ion-button>
           </div>
         </div>
 
@@ -117,6 +141,10 @@
             <img [src]="item.image_url" alt="{{ item.name }}" />
             <h3>{{ item.name }}</h3>
             <p>₱{{ item.price }}</p>
+            <ion-button fill="clear" color="Dark" (click)="addToCartFromCard(item, $event)">
+              <ion-icon name="cart-outline" slot="start"></ion-icon>
+              Add to Cart
+            </ion-button>
           </div>
         </div>
 
@@ -129,6 +157,10 @@
             <img [src]="item.image_url" alt="{{ item.name }}" />
             <h3>{{ item.name }}</h3>
             <p>₱{{ item.price }}</p>
+            <ion-button fill="clear" color="Dark" (click)="addToCartFromCard(item, $event)">
+              <ion-icon name="cart-outline" slot="start"></ion-icon>
+              Add to Cart
+            </ion-button>
           </div>
         </div>
       </div>

@@ -24,9 +24,6 @@ export class HomePage implements OnInit {
 
   quickMenu = [
     { image: 'assets/images/promo1.png', title: 'Best Sellers', tagline: 'Fan favorites you can’t miss.', link: '/menu?category=best-sellers' },
-    { image: 'assets/images/promo2.png', title: 'New Flavors', tagline: 'Freshly baked and bold.', link: '/menu?category=new-flavors' },
-    { image: 'assets/images/promo3.png', title: 'Combo Deals', tagline: 'Perfect pairs at great prices.', link: '/promos' },
-    { image: 'assets/images/promo4.png', title: 'Perfect Sides', tagline: 'Great add-ons for your meal.', link: '/menu?category=cheese' },
     { image: 'assets/images/promo5.png', title: 'Family Feast', tagline: 'Big meals for big moments.', link: '/menu?category=family' },
     { image: 'assets/images/promo6.png', title: 'Weekend Promo', tagline: 'Exclusive offers every weekend.', link: '/promos' }
   ];
