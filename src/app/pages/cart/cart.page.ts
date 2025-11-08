@@ -33,8 +33,7 @@ export class CartPage implements OnInit {
   }
 
   async loadUser() {
-    const { data: sessionData, error: sessionError } = await this.supabase.client.auth.getSession();
-    if (sessionError) return;
+    const { data: sessionData } = await this.supabase.client.auth.getSession();
     this.userId = sessionData?.session?.user?.id ?? null;
   }
 
@@ -42,7 +41,7 @@ export class CartPage implements OnInit {
     if (!this.userId) await this.loadUser();
     if (!this.userId) return;
 
-    const { data, error } = await this.supabase.client
+    const { data } = await this.supabase.client
       .from('cart')
       .select(`
         id,
@@ -52,8 +51,6 @@ export class CartPage implements OnInit {
         promos:promo_id ( id, name, price, description, image_url )
       `)
       .eq('user_id', this.userId);
-
-    if (error) return;
 
     this.cartItems = (data || []).map((row: any) => {
       const item = row.menu_items || row.promos;
@@ -107,15 +104,85 @@ export class CartPage implements OnInit {
   }
 
   async checkout() {
-    const total = this.getTotal() + this.getTotal() * 0.12 + this.deliveryFee;
+    if (!this.userId || this.cartItems.length === 0) {
+      const alert = await this.alertCtrl.create({
+        header: 'Empty Cart',
+        message: 'Please add items to your cart before checking out.',
+        buttons: ['OK'],
+      });
+      await alert.present();
+      return;
+    }
+
+    const subtotal = this.getTotal();
+    const tax = subtotal * 0.12;
+    const total = subtotal + tax + this.deliveryFee;
+
+    const { data: order, error: orderError } = await this.supabase.client
+      .from('orders')
+      .insert({
+        user_id: this.userId,
+        total_amount: total,
+        payment_method: this.paymentMethod,
+        delivery_fee: this.deliveryFee,
+        tax: tax,
+        status: 'pending',
+      })
+      .select()
+      .single();
+
+    if (orderError || !order) {
+      const alert = await this.alertCtrl.create({
+        header: 'Order Failed',
+        message: 'There was a problem placing your order. Please try again.',
+        buttons: ['OK'],
+      });
+      await alert.present();
+      return;
+    }
+
+    const orderItems = this.cartItems.map((item) => ({
+      order_id: order.id,
+      menu_item_id: item.menu_item_id,
+      promo_id: item.promo_id,
+      quantity: item.quantity,
+      price: item.price,
+    }));
+
+    const { error: itemsError } = await this.supabase.client
+      .from('order_items')
+      .insert(orderItems);
+
+    if (itemsError) {
+      const alert = await this.alertCtrl.create({
+        header: 'Error',
+        message: 'Order was created but items failed to save.',
+        buttons: ['OK'],
+      });
+      await alert.present();
+      return;
+    }
+
+    await this.supabase.client.from('cart').delete().eq('user_id', this.userId);
+    await this.loadCart();
+
     const alert = await this.alertCtrl.create({
-      header: 'Confirm Order',
+      header: 'Order Placed',
       message: `
+        <strong>Order ID:</strong> ${order.id}<br>
         <strong>Total:</strong> ₱${total.toFixed(2)}<br>
         <strong>Payment:</strong> ${this.paymentMethod.toUpperCase()}
       `,
-      buttons: ['OK'],
+      buttons: [
+        {
+          text: 'OK',
+          handler: () => {
+            this.router.navigate(['/menu']);
+          },
+        },
+      ],
     });
+
     await alert.present();
   }
 }
