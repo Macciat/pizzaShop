@@ -53,11 +53,9 @@ import { RealtimeChannel } from '@supabase/supabase-js';
 export class OrdersModalComponent {
   orders: any[] = [];
   private modalCtrl = inject(ModalController);
-
   getStatusColor(status: string): string {
     return status === 'completed' ? 'success' : status === 'pending' ? 'warning' : 'medium';
   }
-
   async close() { await this.modalCtrl.dismiss(); }
 }
 
@@ -78,6 +76,7 @@ export class AppComponent implements OnInit, OnDestroy {
   private cartService = inject(CartService);
 
   public isLoggedIn = false;
+  public isAdmin = false;
   public userData: any = null;
   public cartCount = 0;
   public ordersCount = 0;
@@ -97,10 +96,13 @@ export class AppComponent implements OnInit, OnDestroy {
     this.userData = data?.session;
     this.userId = data?.session?.user?.id ?? null;
 
+    this.isAdmin = this.userData?.user?.email === 'qlabsumayod@tip.edu.ph';
+
     this.supabaseService.client.auth.onAuthStateChange((_event, session) => {
       this.isLoggedIn = !!session;
       this.userData = session;
       this.userId = session?.user?.id ?? null;
+      this.isAdmin = this.userData?.user?.email === 'qlabsumayod@tip.edu.ph';
       if (this.userId) this.subscribeToOrders();
       else this.ordersCount = 0;
     });
@@ -112,10 +114,8 @@ export class AppComponent implements OnInit, OnDestroy {
     if (this.userId) this.subscribeToOrders();
   }
 
-  /* FIXED: EXACT SAME SYNTAX AS YOUR WORKING CART */
   private async loadOrders() {
     if (!this.userId) return;
-
     const { data, error } = await this.supabaseService.client
       .from('orders')
       .select(`
@@ -131,28 +131,17 @@ export class AppComponent implements OnInit, OnDestroy {
       `)
       .eq('user_id', this.userId)
       .order('created_at', { ascending: false });
-
-    if (error) {
-      console.error('Error loading orders:', error);
-      return;
-    }
-
+    if (error) console.error('Error loading orders:', error);
     this.orders = data || [];
     this.ordersCount = data?.length || 0;
   }
 
   private subscribeToOrders() {
     if (this.ordersChannel) this.ordersChannel.unsubscribe();
-
     this.loadOrders();
-
     this.ordersChannel = this.supabaseService.client
       .channel('orders-changes')
-      .on(
-        'postgres_changes',
-        { event: '*', schema: 'public', table: 'orders', filter: `user_id=eq.${this.userId}` },
-        () => this.loadOrders()
-      )
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'orders', filter: `user_id=eq.${this.userId}` }, () => this.loadOrders())
       .subscribe();
   }
 
@@ -170,16 +159,15 @@ export class AppComponent implements OnInit, OnDestroy {
   async logout(): Promise<void> {
     await this.supabaseService.client.auth.signOut();
     this.isLoggedIn = false;
+    this.isAdmin = false;
     this.userData = null;
     this.userId = null;
     this.ordersCount = 0;
     this.orders = [];
-
     if (this.ordersChannel) {
       this.supabaseService.client.removeChannel(this.ordersChannel);
       this.ordersChannel = null;
     }
-
     const alert = await this.alertCtrl.create({
       header: 'Logged Out',
       message: 'You have been logged out successfully.',

@@ -53,9 +53,13 @@
           <ion-icon name="call-outline" slot="start" style="color: white;"></ion-icon>
           <ion-label style="color: white;">Contact Us</ion-label>
         </ion-item>
+
+        <ion-item *ngIf="isAdmin" routerLink="/admin-dashboard" lines="none">
+          <ion-icon name="settings-outline" slot="start" style="color: white;"></ion-icon>
+          <ion-label style="color: white;">Admin Dashboard</ion-label>
+        </ion-item>
       </ion-list>
 
-      <!-- user section fixed bottom -->
       <div style="position: absolute; bottom: 0; width: 100%; padding: 1rem;">
         <div *ngIf="!isLoggedIn">
           <ion-button expand="block" color="light" fill="solid" routerLink="/login">

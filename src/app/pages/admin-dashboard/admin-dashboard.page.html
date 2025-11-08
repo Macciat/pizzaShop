@@ -1,0 +1,106 @@
+<ion-content *ngIf="isAdmin; else noAccess">
+  <div class="admin-container">
+    <h1 class="page-title">Admin Dashboard</h1>
+
+    <section class="admin-section">
+      <h2>Orders ({{ orders.length }})</h2>
+      <ion-list>
+        <ion-item *ngFor="let order of orders" lines="full" class="no-hover-effect">
+          <ion-label class="ion-text-wrap">
+            <h3><strong>Order #{{ order.id }}</strong></h3>
+            <p><strong>User ID:</strong> {{ order.user_id }}</p>
+            <p><strong>Total:</strong> ₱{{ order.total_amount | number:'1.2-2' }}</p>
+            <p><strong>Payment:</strong> {{ order.payment_method | uppercase }}</p>
+            <p><strong>Delivery Fee:</strong> ₱{{ order.delivery_fee }}</p>
+            <p><strong>Tax:</strong> ₱{{ order.tax | number:'1.2-2' }}</p>
+            <p><strong>Status:</strong> {{ order.status | uppercase }}</p>
+            <p><strong>Ordered:</strong> {{ order.created_at | date:'medium' }}</p>
+
+            <p><strong>Items:</strong></p>
+            <ion-list class="order-items-list">
+              <ion-item *ngFor="let item of order.order_items" lines="none">
+                <ion-label class="ion-text-wrap">
+                  {{ item.quantity }}× {{ item.menu_items?.name || item.promos?.name || 'Unknown Item' }}
+                  <span class="price">₱{{ (item.menu_items?.price || item.promos?.price || 0) * item.quantity | number:'1.2-2' }}</span>
+                </ion-label>
+              </ion-item>
+            </ion-list>
+          </ion-label>
+
+          <ion-buttons slot="end">
+            <ion-select 
+              interface="popover" 
+              placeholder="Status"
+              [value]="order.status"
+              (ionChange)="updateOrderStatus(order.id, $event.detail.value)">
+              <ion-select-option value="pending">Pending</ion-select-option>
+              <ion-select-option value="preparing">Preparing</ion-select-option>
+              <ion-select-option value="ready">Ready</ion-select-option>
+              <ion-select-option value="delivered">Delivered</ion-select-option>
+              <ion-select-option value="cancelled">Cancelled</ion-select-option>
+            </ion-select>
+
+            <ion-button 
+              color="danger" 
+              fill="clear" 
+              (click)="deleteOrder(order.id)"
+              class="delete-btn">
+              <ion-icon name="trash-outline" slot="icon-only"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-item>
+      </ion-list>
+    </section>
+
+    <section class="admin-section">
+      <div class="section-header">
+        <h2>Menu Items</h2>
+        <ion-button size="small" (click)="addMenuItem()">Add</ion-button>
+      </div>
+      <ion-list>
+        <ion-item *ngFor="let item of menuItems">
+          <ion-thumbnail slot="start">
+            <img [src]="item.image_url || 'assets/placeholder.png'" />
+          </ion-thumbnail>
+          <ion-label>
+            <h3>{{ item.name }}</h3>
+            <p>{{ item.description }}</p>
+            <p>₱{{ item.price }}</p>
+          </ion-label>
+          <ion-buttons slot="end">
+            <ion-button fill="outline" (click)="editMenuItem(item)">Edit</ion-button>
+            <ion-button color="danger" (click)="deleteMenuItem(item.id)">Delete</ion-button>
+          </ion-buttons>
+        </ion-item>
+      </ion-list>
+    </section>
+
+    <section class="admin-section">
+      <div class="section-header">
+        <h2>Promos</h2>
+        <ion-button size="small" (click)="addPromo()">Add</ion-button>
+      </div>
+      <ion-list>
+        <ion-item *ngFor="let promo of promos">
+          <ion-thumbnail slot="start">
+            <img [src]="promo.image_url || 'assets/placeholder.png'" />
+          </ion-thumbnail>
+          <ion-label>
+            <h3>{{ promo.title }}</h3>
+            <p>{{ promo.description }}</p>
+          </ion-label>
+          <ion-button color="danger" (click)="deletePromo(promo.id)">Delete</ion-button>
+        </ion-item>
+      </ion-list>
+    </section>
+  </div>
+</ion-content>
+
+<ng-template #noAccess>
+  <ion-content class="no-access">
+    <div class="no-access-message">
+      <h2>Access Denied</h2>
+      <p>You are not authorized to view this page.</p>
+    </div>
+  </ion-content>
+</ng-template>

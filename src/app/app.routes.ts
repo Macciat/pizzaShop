@@ -28,22 +28,32 @@ export const routes: Routes = [
   },
   {
     path: 'company-history',
-    loadComponent: () => import('./pages/company-history/company-history.page').then( m => m.CompanyHistoryPage)
+    loadComponent: () =>
+      import('./pages/company-history/company-history.page').then((m) => m.CompanyHistoryPage),
   },
   {
     path: 'developers',
-    loadComponent: () => import('./pages/developers/developers.page').then( m => m.DevelopersPage)
+    loadComponent: () =>
+      import('./pages/developers/developers.page').then((m) => m.DevelopersPage),
   },
   {
     path: 'contact-us',
-    loadComponent: () => import('./pages/contact-us/contact-us.page').then( m => m.ContactUsPage)
+    loadComponent: () =>
+      import('./pages/contact-us/contact-us.page').then((m) => m.ContactUsPage),
   },
   {
     path: 'login',
-    loadComponent: () => import('./login/login.page').then( m => m.LoginPage)
+    loadComponent: () =>
+      import('./login/login.page').then((m) => m.LoginPage),
   },
   {
     path: 'register',
-    loadComponent: () => import('./register/register.page').then( m => m.RegisterPage)
+    loadComponent: () =>
+      import('./register/register.page').then((m) => m.RegisterPage),
+  },
+  {
+    path: 'admin-dashboard',
+    loadComponent: () =>
+      import('./pages/admin-dashboard/admin-dashboard.page').then((m) => m.AdminPage),
   },
 ];

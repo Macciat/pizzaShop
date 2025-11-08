@@ -1,0 +1,108 @@
+@use '../home/home.page.scss' as *;
+
+.admin-container {
+  padding: 20px;
+  background: linear-gradient(180deg, #3a0d0d 0%, #000 100%);
+  min-height: 100vh;
+}
+
+.page-title {
+  color: #d4af37;
+  font-family: 'Merriweather', serif;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.admin-section {
+  background: linear-gradient(180deg, #2a0909 0%, #1a0505 100%);
+  border: 2px solid #d4af37;
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 30px;
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+
+  h2 {
+    color: #f5e1a4;
+    margin-bottom: 10px;
+   }
+
+  ion-item {
+    --background: transparent;
+    --color: #f0dada;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+  }
+
+  ion-button {
+    --background: linear-gradient(180deg, #6d1a1a 0%, #3a0d0d 100%);
+    --color: #f5e1a4;
+    border: 1px solid #d4af37;
+  }
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.no-access {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(180deg, #3a0d0d 0%, #000 100%);
+}
+
+.no-access-message {
+  text-align: center;
+  color: #f0dada;
+}
+
+::ng-deep ion-select-popover {
+  --background: white !important;
+  --color: #b22222 !important;
+}
+
+::ng-deep ion-select-popover ion-item,
+::ng-deep ion-select-popover ion-select-option,
+::ng-deep ion-select-popover ion-label,
+::ng-deep ion-select-popover ion-list {
+  color: #b22222 !important;
+  --color: #b22222 !important;
+  background: white !important;
+}
+
+.price {
+  float: right;
+  color: #f0dada !important;  
+  font-weight: 600;
+}
+
+.no-hover-effect {
+  --ripple-color: transparent !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+.no-hover-effect:hover,
+.no-hover-effect:active,
+.no-hover-effect:focus {
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.delete-btn {
+  --padding-start: 8px;
+  --padding-end: 8px;
+  margin-left: 8px;
+}
+
+.delete-btn:hover {
+  --color: #ff4444;
+}
+
+.order-items-list {
+  background: transparent;
+  padding-left: 1rem;
+  margin: 0.5rem 0;
+}
