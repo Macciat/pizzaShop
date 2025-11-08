@@ -1,5 +1,5 @@
-<ion-content class="cart-container" [fullscreen]="true">
-  <div class="cart-grid ion-padding" style="padding-top: 80px;">
+<ion-content [fullscreen]="true" class="cart-container">
+  <div class="cart-grid ion-padding">
     <div class="cart-items">
       <ion-list *ngIf="cartItems.length > 0; else emptyCart">
         <ion-item *ngFor="let item of cartItems" lines="full">
