@@ -1,0 +1,153 @@
+.history-page {
+  background: #3a0d0d;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  min-height: 100vh;
+  padding: 5rem 1.5rem 1.5rem;
+  overflow-y: auto;
+  box-sizing: border-box;
+
+  scrollbar-width: thin;
+  scrollbar-color: #a37f2d #2a0909;
+
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+  &::-webkit-scrollbar-track {
+    background: #2a0909;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #a37f2d;
+    border-radius: 5px;
+    border: 2px solid #2a0909;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: #d4af37;
+  }
+
+  .header {
+    text-align: center;
+    border-bottom: 2px solid #d4af37;
+    margin-bottom: 1.5rem;
+
+    h1 {
+      font-family: 'Merriweather', serif;
+      color: #d4af37;
+      font-size: 2rem;
+    }
+  }
+
+  .timeline-section {
+    background: linear-gradient(180deg, #6d1a1a 0%, #3a0d0d 100%);
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+    padding: 2rem 1.5rem;
+
+    .timeline-intro {
+      text-align: center;
+      margin-bottom: 2rem;
+
+      h2 {
+        font-family: 'Merriweather', serif;
+        color: #d4af37;
+        font-size: 1.6rem;
+      }
+
+      .highlight {
+        color: #f5e1a4;
+      }
+
+      p {
+        margin-top: 1rem;
+        font-size: 1rem;
+        line-height: 1.6;
+        color: #f0dada;
+      }
+    }
+
+    .timeline {
+      position: relative;
+      margin: 2rem auto;
+      padding-left: 1rem;
+      border-left: 3px solid #d4af37;
+      max-width: 700px;
+
+      .timeline-item {
+        position: relative;
+        margin-bottom: 2rem;
+        padding-left: 1.5rem;
+
+        &::before {
+          content: '';
+          position: absolute;
+          left: -10px;
+          top: 8px;
+          width: 16px;
+          height: 16px;
+          background-color: #d4af37;
+          border-radius: 50%;
+          box-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+        }
+
+        .timeline-year {
+          font-family: 'Merriweather', serif;
+          color: #f5e1a4;
+          font-size: 1.1rem;
+          font-weight: bold;
+          margin-bottom: 0.3rem;
+        }
+
+        .timeline-content {
+          h3 {
+            font-family: 'Merriweather', serif;
+            color: #d4af37;
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+          }
+
+          p {
+            color: #f0dada;
+            font-size: 1rem;
+            line-height: 1.6;
+            text-align: justify;
+          }
+        }
+      }
+    }
+  }
+
+  /* Fade-in animation for polish */
+  animation: fadeIn 0.6s ease-in-out;
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 600px) {
+    .timeline-section {
+      padding: 1.5rem;
+
+      .timeline {
+        padding-left: 0.8rem;
+
+        .timeline-item {
+          padding-left: 1rem;
+
+          &::before {
+            width: 12px;
+            height: 12px;
+            left: -8px;
+          }
+        }
+      }
+    }
+  }
+}
