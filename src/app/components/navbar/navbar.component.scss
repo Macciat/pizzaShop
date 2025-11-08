@@ -1,5 +1,5 @@
 ion-toolbar {
-  --background: #b22222;
+  --background: linear-gradient(180deg, #6d1a1a 0%, #3a0d0d 50%, #1a0a0a 100%);
   color: #ffffff;
   display: flex;
   justify-content: space-between;
@@ -12,7 +12,7 @@ ion-toolbar {
 
 ion-title.logo {
   font-weight: 500;
-  color: #ffffff;
+  color: #ffd700;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -22,14 +22,13 @@ ion-title.logo {
   font-family: "Hurricane", cursive;
   letter-spacing: 1px;
   line-height: 1;
+  text-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
 }
 
 .nav-actions {
   display: flex;
   align-items: center;
-  gap: 18px;
-  margin-left: auto;
-  margin-right: 10px;
+  gap: 8px;
 }
 
 .menu-toggle {
@@ -56,27 +55,12 @@ ion-title.logo {
   }
 }
 
-@keyframes flashGreen {
-  0% {
-    color: #ffffff;
-    filter: none;
-  }
-  50% {
-    color: #c8fadb;
-    filter: drop-shadow(0 0 6px #a6eec1);
-  }
-  100% {
-    color: #ffffff;
-    filter: none;
-  }
-}
-
 .nav-link,
 .cart-button {
   --background: transparent !important;
   background: none !important;
   box-shadow: none !important;
-  color: #ffffff !important;
+  color: #ffd700 !important;
   font-family: "Inter", "Poppins", sans-serif;
   font-weight: 500;
   letter-spacing: 0.5px;
@@ -93,7 +77,7 @@ ion-title.logo {
 .nav-link ion-icon,
 .cart-button ion-icon {
   font-size: 1.3rem;
-  color: #ffffff !important;
+  color: #ffd700 !important;
   margin-right: 6px;
   transition: transform 0.25s ease, color 0.25s ease;
 }
@@ -105,12 +89,28 @@ ion-title.logo {
 .nav-link:hover,
 .cart-button:hover {
   transform: scale(1.1);
+  color: #fffacd !important;
 }
 
 .nav-link:active,
 .cart-button:active {
-  animation: flashGreen 0.4s ease;
+  animation: flashGold 0.4s ease;
   transform: scale(1.1);
+}
+
+@keyframes flashGold {
+  0% {
+    color: #ffd700;
+    filter: none;
+  }
+  50% {
+    color: #fffacd;
+    filter: drop-shadow(0 0 6px #ffd700);
+  }
+  100% {
+    color: #ffd700;
+    filter: none;
+  }
 }
 
 .nav-link {
@@ -120,35 +120,24 @@ ion-title.logo {
 .cart-button {
   cursor: pointer;
 }
-.nav-actions {
+
+ion-button.nav-link {
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0.3px;
   display: flex;
   align-items: center;
-  gap: 8px;
-
-  ion-button.nav-link {
-    font-family: inherit;
-    font-size: 16px; 
-    font-weight: 500;
-    text-transform: none;
-    letter-spacing: 0.3px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-
-    ion-icon {
-      font-size: 18px;
-      margin-bottom: 1px; 
-    }
-
-    span {
-      font-size: 16px;
-      line-height: 1;
-    }
-
-    &.login-btn {
-      transition: all 0.2s ease-in-out;
-    }
-  }
+  justify-content: center;
+  gap: 6px;
 }
 
+ion-button.nav-link span {
+  font-size: 16px;
+  line-height: 1;
+}
+
+ion-button.nav-link.login-btn {
+  transition: all 0.2s ease-in-out;
+}
