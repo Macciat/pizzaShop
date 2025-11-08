@@ -1,15 +1,21 @@
 .menu-content {
-  --background: #b22222;
+  --background: linear-gradient(180deg, #8b0000 0%, #5a0b0b 50%, #2b0000 100%);
+  background: var(--background);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
   padding-bottom: 16px;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .user-section {
   padding: 16px;
   text-align: center;
+  border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+  background: linear-gradient(180deg, rgba(90, 11, 11, 0.8) 0%, rgba(43, 0, 0, 0.9) 100%);
+  box-shadow: 0 4px 10px rgba(212, 175, 55, 0.15);
 }
 
 .user-info {
@@ -19,4 +25,28 @@
   margin-bottom: 8px;
   color: #fff;
   font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+.user-info img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 2px solid #d4af37;
+  margin-bottom: 10px;
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+  object-fit: cover;
+}
+
+.user-info h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #f5e1a4;
+}
+
+.user-info p {
+  margin: 4px 0 0;
+  font-size: 0.95rem;
+  color: #e0cba3;
+  opacity: 0.9;
 }
