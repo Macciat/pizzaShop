@@ -1,5 +1,5 @@
 ion-content {
-  --background: #000;
+  --background: linear-gradient(180deg, #3a0d0d 0%, #000 100%);
   padding-top: 60px;
 }
 
@@ -10,20 +10,30 @@ ion-content {
   display: flex;
   gap: 10px;
   z-index: 10;
-}
 
-.header-buttons ion-button {
-  --background: #b22222;
-  --color: #fff;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  padding: 4px 12px;
+  ion-button {
+    --background: linear-gradient(180deg, #6d1a1a 0%, #3a0d0d 100%);
+    --color: #f5e1a4;
+    border: 2px solid #d4af37;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    padding: 4px 12px;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: linear-gradient(180deg, #8b2b2b 0%, #4a0f0f 100%);
+      box-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+    }
+  }
 }
 
 .carousel-section {
   width: 100%;
   height: calc(100vh - 60px);
   overflow: hidden;
+  border-top: 2px solid #d4af37;
+  border-bottom: 2px solid #d4af37;
+  background: linear-gradient(180deg, #3a0d0d 0%, #1a0505 100%);
 }
 
 swiper-container {
@@ -45,15 +55,18 @@ swiper-slide {
 }
 
 #featured-section {
-  background: #111;
+  background: linear-gradient(180deg, #3a0d0d 0%, #1a0505 100%);
+  border-top: 2px solid #d4af37;
+  border-bottom: 2px solid #d4af37;
   padding: 60px 20px;
   text-align: center;
-}
 
-#featured-section .section-title {
-  color: #fff;
-  font-size: 2rem;
-  margin-bottom: 40px;
+  .section-title {
+    color: #d4af37;
+    font-family: 'Merriweather', serif;
+    font-size: 2rem;
+    margin-bottom: 40px;
+  }
 }
 
 .menu-grid {
@@ -64,55 +77,73 @@ swiper-slide {
 }
 
 .menu-card {
-  background: #1c1c1c;
+  background: linear-gradient(180deg, #2a0909 0%, #1a0505 100%);
+  border: 2px solid #d4af37;
   border-radius: 16px;
   padding: 20px;
   height: 360px;
   width: 100%;
   max-width: 280px;
   text-align: center;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
-}
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
 
-.menu-card:hover {
-  transform: scale(1.05);
-}
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+  }
 
-.menu-card img {
-  width: 100%;
-  height: 180px;
-  border-radius: 10px;
-  object-fit: cover;
-}
+  img {
+    width: 100%;
+    height: 180px;
+    border-radius: 10px;
+    border: 2px solid #d4af37;
+    object-fit: cover;
+  }
 
-.menu-card h3 {
-  color: #fff;
-  margin: 10px 0 5px;
-  font-size: 1.1rem;
-}
+  h3 {
+    color: #f5e1a4;
+    margin: 10px 0 5px;
+    font-size: 1.1rem;
+  }
 
-.menu-card p {
-  color: #ccc;
-  font-size: 0.95rem;
+  p {
+    color: #f0dada;
+    font-size: 0.95rem;
+  }
 }
 
 .view-more-btn {
   margin-top: 40px;
+  background: linear-gradient(180deg, #6d1a1a 0%, #3a0d0d 100%);
+  border: 2px solid #d4af37;
+  color: #f5e1a4;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: linear-gradient(180deg, #8b2b2b 0%, #4a0f0f 100%);
+    box-shadow: 0 0 12px rgba(212, 175, 55, 0.4);
+  }
 }
 
-/* Promos Section */
 .quick-menu {
-  background: #111;
+  background: linear-gradient(180deg, #3a0d0d 0%, #1a0505 100%);
   padding: 60px 20px;
   text-align: center;
-}
+  border-top: 2px solid #d4af37;
+  border-bottom: 2px solid #d4af37;
 
-.quick-menu h2 {
-  color: #fff;
-  font-size: 1.8rem;
-  margin-bottom: 40px;
-  letter-spacing: 1px;
+  h2 {
+    color: #d4af37;
+    font-size: 1.8rem;
+    margin-bottom: 40px;
+    letter-spacing: 1px;
+    font-family: 'Merriweather', serif;
+  }
 }
 
 .promo-grid {
@@ -123,92 +154,100 @@ swiper-slide {
 }
 
 .promo-card {
-  background: #222;
+  background: linear-gradient(180deg, #2a0909 0%, #1a0505 100%);
+  border: 2px solid #d4af37;
   border-radius: 15px;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
   width: 100%;
   max-width: 220px;
-}
 
-.promo-card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 15px rgba(255, 255, 255, 0.1);
-}
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(212, 175, 55, 0.3);
+  }
 
-.promo-card img {
-  width: 100%;
-  height: 140px;
-  object-fit: cover;
-}
+  img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+  }
 
-.promo-info {
-  padding: 10px 15px;
-}
+  .promo-info {
+    padding: 10px 15px;
 
-.promo-info h3 {
-  color: #fff;
-  font-size: 1.1rem;
-  margin: 5px 0;
-}
+    h3 {
+      color: #f5e1a4;
+      font-size: 1.1rem;
+      margin: 5px 0;
+    }
 
-.promo-info p {
-  color: #ccc;
-  font-size: 0.9rem;
-  margin: 0;
+    p {
+      color: #f0dada;
+      font-size: 0.9rem;
+      margin: 0;
+    }
+  }
 }
 
 .video-section {
   width: 100%;
-  background: #000;
+  background: linear-gradient(180deg, #3a0d0d 0%, #000 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 80px 20px;
   text-align: center;
-}
+  border-top: 2px solid #d4af37;
+  border-bottom: 2px solid #d4af37;
 
-.video-title {
-  color: #fff;
-  font-size: 2rem;
-  margin-bottom: 10px;
-}
+  .video-title {
+    color: #d4af37;
+    font-size: 2rem;
+    margin-bottom: 10px;
+    font-family: 'Merriweather', serif;
+  }
 
-.video-description {
-  color: #ccc;
-  font-size: 1rem;
-  max-width: 700px;
-  margin: 0 auto 30px;
-}
+  .video-description {
+    color: #f0dada;
+    font-size: 1rem;
+    max-width: 700px;
+    margin: 0 auto 30px;
+  }
 
-.video-wrapper {
-  width: 100%;
-  max-width: 900px;
-  aspect-ratio: 16 / 9;
-  overflow: hidden;
-  border-radius: 15px;
-  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.1);
+  .video-wrapper {
+    width: 100%;
+    max-width: 900px;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: 15px;
+    border: 2px solid #d4af37;
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
+  }
 }
 
 .description-section {
   text-align: center;
-  background: #111;
+  background: linear-gradient(180deg, #3a0d0d 0%, #1a0505 100%);
   color: #fff;
   padding: 80px 20px;
-}
+  border-top: 2px solid #d4af37;
 
-.description-section .title {
-  font-size: 2rem;
-  margin-bottom: 20px;
-}
+  .title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #d4af37;
+    font-family: 'Merriweather', serif;
+  }
 
-.description-section .description {
-  font-size: 1rem;
-  line-height: 1.6;
-  max-width: 800px;
-  margin: 0 auto;
-  color: #ccc;
+  .description {
+    font-size: 1rem;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto;
+    color: #f0dada;
+  }
 }
 
 @media (max-width: 1024px) {
