@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonContent } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
 import { register } from 'swiper/element/bundle';
+import { SupabaseService } from '../../services/supabase';
 
 register();
 
@@ -28,24 +29,41 @@ export class HomePage implements OnInit {
     { image: 'assets/images/promo6.png', title: 'Weekend Promo', tagline: 'Exclusive offers every weekend.', link: '/promos' }
   ];
 
-  featuredProducts = [
-    { id: 'p1', image: 'assets/images/products/p1.jpg', name: 'Pepperoni Duo', price: 549 },
-    { id: 'p2', image: 'assets/images/products/p2.jpg', name: 'Cheesy Combo', price: 499 },
-    { id: 'p3', image: 'assets/images/products/p3.jpg', name: 'Hawaiian Pizza', price: 309 },
-    { id: 'p4', image: 'assets/images/products/p4.jpg', name: 'Margherita', price: 279 },
-    { id: 'p5', image: 'assets/images/products/p5.jpg', name: 'BBQ Chicken', price: 359 },
-    { id: 'p6', image: 'assets/images/products/p6.jpg', name: 'Veggie Delight', price: 269 },
-    { id: 'p7', image: 'assets/images/products/p7.jpg', name: 'Meat Lovers', price: 389 },
-    { id: 'p8', image: 'assets/images/products/p8.jpg', name: 'Four Cheese', price: 329 },
-    { id: 'p9', image: 'assets/images/products/p9.jpg', name: 'Spicy Italian', price: 349 },
-    { id: 'p10', image: 'assets/images/products/p10.jpg', name: 'Garlic Bread', price: 129 },
-    { id: 'p11', image: 'assets/images/products/p11.jpg', name: 'Potato Wedges', price: 119 },
-    { id: 'p12', image: 'assets/images/products/p12.jpg', name: 'Chocolate Brownie', price: 99 }
-  ];
+  featuredProducts: any[] = [];
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private supabase: SupabaseService
+  ) {}
 
-  ngOnInit() {}
+  async ngOnInit() {
+    await this.loadFeaturedProducts();
+  }
+
+  async loadFeaturedProducts() {
+    try {
+      const { data, error } = await this.supabase.client
+        .from('menu_items')
+        .select('*')
+        .limit(10);
+
+      if (error) {
+        console.error('Supabase error:', error);
+        return;
+      }
+
+      if (!data || data.length === 0) {
+        console.log('No menu items found');
+        return;
+      }
+      this.featuredProducts = data;
+
+      console.log('HOME PAGE LOADED — IMAGES READY:', this.featuredProducts);
+
+    } catch (err) {
+      console.error('LOAD FAILED:', err);
+    }
+  }
 
   onSlideClick(slide: any) {
     this.router.navigateByUrl(slide.link);
