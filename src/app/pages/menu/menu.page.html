@@ -1,11 +1,11 @@
 <ion-header translucent="true">
-  <ion-toolbar color="dark">
+  <ion-toolbar>
     <ion-title>Menu</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content fullscreen>
-  <div class="menu-wrapper" style="padding-top: 80px;">
+<ion-content fullscreen class="menu-container">
+  <div class="menu-wrapper">
     <section id="promos-section" class="menu-section">
       <h1 class="section-title">Our Best Deals & Promos</h1>
 
@@ -170,7 +170,7 @@
   <ion-modal [isOpen]="isModalOpen" (didDismiss)="closeModal()">
     <ng-template>
       <ion-header translucent="true">
-        <ion-toolbar color="dark">
+        <ion-toolbar>
           <ion-title>{{ selectedItem?.name }}</ion-title>
           <ion-buttons slot="end">
             <ion-button (click)="closeModal()">Close</ion-button>
