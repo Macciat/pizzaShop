@@ -1,6 +1,6 @@
 ion-content {
   --background: linear-gradient(180deg, #3a0d0d 0%, #000 100%);
-  padding-top: 60px;
+  padding-top: 100px;
 }
 
 .header-buttons {
@@ -28,23 +28,32 @@ ion-content {
 }
 
 .carousel-section {
+  margin-top: 50px;
   width: 100%;
-  height: calc(100vh - 60px);
-  overflow: hidden;
+  background: linear-gradient(180deg, #3a0d0d 0%, #1a0505 100%);
   border-top: 2px solid #d4af37;
   border-bottom: 2px solid #d4af37;
-  background: linear-gradient(180deg, #3a0d0d 0%, #1a0505 100%);
-}
+  overflow: hidden;
 
-swiper-container {
-  width: 100%;
-  height: 100%;
-}
+  swiper-container {
+    width: 100%;
+    display: block;
+  }
 
-swiper-slide {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #000; 
+  }
+
+  .slide-img {
+    width: 100%;
+    height: auto;
+    max-height: 90vh;
+    object-fit: contain;
+    display: block;
+  }
 }
 
 .slide-img {
@@ -257,8 +266,13 @@ swiper-slide {
 }
 
 @media (max-width: 768px) {
+  ion-content {
+    padding-top: 100px;
+  }
+
   .carousel-section {
     height: 50vh;
+    margin-top: 10px;
   }
 
   .menu-grid {

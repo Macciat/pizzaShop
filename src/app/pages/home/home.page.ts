@@ -18,9 +18,9 @@ register();
 })
 export class HomePage implements OnInit {
   slides = [
-    { image: 'assets/images/slide1.jpeg', link: '/menu' },
-    { image: 'assets/images/slide2.jpeg', link: '/about' },
-    { image: 'assets/images/slide3.jpeg', link: '/cart' }
+    { image: 'assets/images/slide1.jpg', link: '/menu' },
+    { image: 'assets/images/slide2.jpg', link: '/menu' },
+    { image: 'assets/images/slide3.jpg', link: '/menu' }
   ];
 
   quickMenu = [
