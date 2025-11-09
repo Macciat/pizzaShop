@@ -18,9 +18,11 @@ register();
 })
 export class HomePage implements OnInit {
   slides = [
-    { image: 'assets/images/slide1.jpg', link: '/menu' },
-    { image: 'assets/images/slide2.jpg', link: '/menu' },
-    { image: 'assets/images/slide3.jpg', link: '/menu' }
+    { image: 'https://yuzsjohfqpsryuzmnbpk.supabase.co/storage/v1/object/public/menu_images/slide1.jpeg', link: '/menu' },
+    { image: 'https://yuzsjohfqpsryuzmnbpk.supabase.co/storage/v1/object/public/menu_images/slide2.jpeg', link: '/menu' },
+    { image: 'https://yuzsjohfqpsryuzmnbpk.supabase.co/storage/v1/object/public/menu_images/slide3.jpeg', link: '/menu' },
+    { image: 'https://yuzsjohfqpsryuzmnbpk.supabase.co/storage/v1/object/public/menu_images/slide4.jpeg', link: '/menu' },
+    { image: 'https://yuzsjohfqpsryuzmnbpk.supabase.co/storage/v1/object/public/menu_images/slide5.jpeg', link: '/menu' }
   ];
 
   quickMenu = [
@@ -56,9 +58,8 @@ export class HomePage implements OnInit {
         console.log('No menu items found');
         return;
       }
-      this.featuredProducts = data;
 
-      console.log('HOME PAGE LOADED — IMAGES READY:', this.featuredProducts);
+      this.featuredProducts = data;
 
     } catch (err) {
       console.error('LOAD FAILED:', err);

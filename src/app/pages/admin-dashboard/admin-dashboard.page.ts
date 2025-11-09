@@ -151,22 +151,46 @@ export class AdminPage implements OnInit {
     await alert.present();
   }
 
-  async editMenuItem(item: any) {
+   async editMenuItem(item: any) {
     const alert = await this.alertCtrl.create({
       header: 'Edit Menu Item',
       inputs: [
-        { name: 'name', value: item.name },
-        { name: 'description', value: item.description },
-        { name: 'price', type: 'number', value: item.price },
-        { name: 'image_url', value: item.image_url },
+        { name: 'name', value: item.name, placeholder: 'Item name' },
+        { name: 'description', value: item.description, placeholder: 'Description' },
+        { name: 'price', type: 'number', value: item.price, placeholder: 'Price' },
+        { name: 'image_url', value: item.image_url || '', placeholder: 'Image URL' },
       ],
       buttons: [
-        'Cancel',
+        { text: 'Cancel', role: 'cancel' },
         {
           text: 'Save',
           handler: async (data) => {
-            await this.supabase.client.from('menu_items').update(data).eq('id', item.id);
-            this.loadData();
+            const { error } = await this.supabase.client
+              .from('menu_items')
+              .update({
+                name: data.name,
+                description: data.description,
+                price: parseFloat(data.price),
+                image_url: data.image_url || null,
+              })
+              .eq('id', item.id);
+
+            if (error) {
+              const toast = await this.toastCtrl.create({
+                message: 'Failed to update item',
+                duration: 2000,
+                color: 'danger',
+              });
+              await toast.present();
+            } else {
+              const toast = await this.toastCtrl.create({
+                message: 'Menu item updated',
+                duration: 1500,
+                color: 'success',
+              });
+              await toast.present();
+              await this.loadData();
+            }
           },
         },
       ],

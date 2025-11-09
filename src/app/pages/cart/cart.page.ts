@@ -168,19 +168,16 @@ export class CartPage implements OnInit {
 
     const alert = await this.alertCtrl.create({
       header: 'Order Placed',
-      message: `
-        <strong>Order ID:</strong> ${order.id}<br>
-        <strong>Total:</strong> ₱${total.toFixed(2)}<br>
-        <strong>Payment:</strong> ${this.paymentMethod.toUpperCase()}
-      `,
+      subHeader: `Order ID: ${order.id}`,
+      message: 'Total: ₱' + total.toFixed(2) + '\n\nPayment: ' + this.paymentMethod.toUpperCase(),
       buttons: [
         {
           text: 'OK',
           handler: () => {
             this.router.navigate(['/menu']);
-          },
-        },
-      ],
+          }
+        }
+      ]
     });
 
     await alert.present();
